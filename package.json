@@ -1,13 +1,23 @@
 {
     "name": "slick-scroll",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "main": "slick-scroll.js",
     "repository": "git@github.com:puemos/slick-scroll.git",
     "description": "A slick scroller for HTML elements or window (Valina javascript)",
     "author": "Shy Alter",
     "license": "MIT",
-    "files": ["slick-scroll.js", "slick-scroll..min.js"],
-    "keywords": ["scroll", "scroller", "element", "javascript", "vanila", "util"],
+    "files": [
+        "slick-scroll.js",
+        "slick-scroll..min.js"
+    ],
+    "keywords": [
+        "scroll",
+        "scroller",
+        "element",
+        "javascript",
+        "vanila",
+        "util"
+    ],
     "devDependencies": {
         "eslint": "4.7.0",
         "eslint-config-airbnb-base": "12.0.0",
@@ -28,8 +38,7 @@
         "uglify-js": "^3.0.4"
     },
     "scripts": {
-        "build":
-            "NODE_ENV=production rollup -c rollup.config.js && uglifyjs --compress --mangle -o slick-scroll.min.js --comments -- slick-scroll.js",
+        "build": "NODE_ENV=production rollup -c rollup.config.js && uglifyjs --compress --mangle -o slick-scroll.min.js --comments -- slick-scroll.js",
         "precommit": "npm run build",
         "prepublish": "npm run build"
     },
