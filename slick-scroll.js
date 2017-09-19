@@ -51,29 +51,69 @@ var createClass = function () {
   };
 }();
 
+/**
+ * @class Scroller
+ */
+
 var Scroller = function () {
+  /**
+   * Creates an instance of Scroller.
+   * @param {Element} element 
+   * @param {number} [speed=500] 
+   * @param {string} [easing='easeOutSine'] 
+   * @memberof Scroller
+   */
   function Scroller(element) {
+    var speed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+    var easing = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'easeOutSine';
     classCallCheck(this, Scroller);
 
     this.element = element;
+    this.speed = speed;
+    this.easing = easing;
+
     this.scrollTargetY = 0;
-    this.speed = 500;
-    this.easing = 'easeOutSine';
     this.scrollY = this.element.scrollY;
   }
+  /**
+   * Sets the scroll speed
+   * 
+   * @param {number} speed 
+   * @returns 
+   * @memberof Scroller
+   */
+
 
   createClass(Scroller, [{
-    key: 'speed',
-    value: function speed(_speed) {
-      this.speed = _speed;
+    key: 'setSpeed',
+    value: function setSpeed(speed) {
+      this.speed = speed;
       return this;
     }
+
+    /**
+     * Sets the scroll easing function
+     * 
+     * @param {string} easing 
+     * @returns 
+     * @memberof Scroller
+     */
+
   }, {
-    key: 'easing',
-    value: function easing(_easing) {
-      this.easing = _easing;
+    key: 'setEasing',
+    value: function setEasing(easing) {
+      this.easing = easing;
       return this;
     }
+
+    /**
+     * Sets the scroll to
+     * 
+     * @param {Element|number} to 
+     * @returns 
+     * @memberof Scroller
+     */
+
   }, {
     key: 'to',
     value: function to(_to) {
@@ -90,6 +130,14 @@ var Scroller = function () {
     value: function getNodeTop(node) {
       return node.offsetTop;
     }
+
+    /**
+     * Scroll
+     * 
+     * @param {Function} [cb=() => {}] callback function when finished the scroll
+     * @memberof Scroller
+     */
+
   }, {
     key: 'scroll',
     value: function scroll() {
