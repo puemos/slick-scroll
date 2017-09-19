@@ -19,11 +19,56 @@ var easingEquations = {
   easeInOutSine: function easeInOutSine(pos) {
     return -0.5 * (Math.cos(Math.PI * pos) - 1);
   },
-  easeInOutQuint: function easeInOutQuint(pos) {
-    if ((pos /= 0.5) < 1) {
-      return 0.5 * Math.pow(pos, 5);
-    }
-    return 0.5 * (Math.pow(pos - 2, 5) + 2);
+  linear: function linear(t) {
+    return t;
+  },
+  // accelerating from zero velocity
+  easeInQuad: function easeInQuad(t) {
+    return t * t;
+  },
+  // decelerating to zero velocity
+  easeOutQuad: function easeOutQuad(t) {
+    return t * (2 - t);
+  },
+  // acceleration until halfway, then deceleration
+  easeInOutQuad: function easeInOutQuad(t) {
+    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+  },
+  // accelerating from zero velocity
+  easeInCubic: function easeInCubic(t) {
+    return t * t * t;
+  },
+  // decelerating to zero velocity
+  easeOutCubic: function easeOutCubic(t) {
+    return --t * t * t + 1;
+  },
+  // acceleration until halfway, then deceleration
+  easeInOutCubic: function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+  },
+  // accelerating from zero velocity
+  easeInQuart: function easeInQuart(t) {
+    return t * t * t * t;
+  },
+  // decelerating to zero velocity
+  easeOutQuart: function easeOutQuart(t) {
+    return 1 - --t * t * t * t;
+  },
+  // acceleration until halfway, then deceleration
+  easeInOutQuart: function easeInOutQuart(t) {
+    return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t;
+  },
+  // accelerating from zero velocity
+  easeInQuint: function easeInQuint(t) {
+    return t * t * t * t * t;
+  },
+  // decelerating to zero velocity
+  easeOutQuint: function easeOutQuint(t) {
+    return 1 + --t * t * t * t * t;
+  },
+  // acceleration until halfway, then deceleration
+  easeInOutQuint: function easeInOutQuint(t) {
+    return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t;
   }
 };
 
@@ -53,9 +98,9 @@ var createClass = function () {
 
 /**
  * @typedef Options
- * @type {object}
+ * @type {bbject}
  * @property {Element} element 
- * @property {number} [duration=500] 
+ * @property {number} [speed=500] 
  * @property {string} [easing='easeOutSine'] 
  */
 
@@ -73,23 +118,37 @@ var Scroller = function () {
     classCallCheck(this, Scroller);
 
     this.element = options.element || window;
-    this.duration = (Number.isInteger(options.duration) ? options.duration : 1) / 1000;
-    this.easing = options.easing || 'easeOutSine';
+    this.speed = options.speed || 500;
+    this.easing = options.easing || 'easeOutQuint';
 
     this.scrollTargetY = 0;
     this.scrollY = this.element.scrollY;
   }
-
   /**
-   * Sets the scroll easing function
+   * Sets the scroll speed
    * 
-   * @param {string} easing 
+   * @param {number} speed 
    * @returns 
    * @memberof Scroller
    */
 
 
   createClass(Scroller, [{
+    key: 'setSpeed',
+    value: function setSpeed(speed) {
+      this.speed = speed;
+      return this;
+    }
+
+    /**
+     * Sets the scroll easing function
+     * 
+     * @param {string} easing 
+     * @returns 
+     * @memberof Scroller
+     */
+
+  }, {
     key: 'setEasing',
     value: function setEasing(easing) {
       this.easing = easing;
@@ -111,14 +170,14 @@ var Scroller = function () {
       return this;
     }
   }, {
+    key: 'calcTime',
+    value: function calcTime() {
+      this.time = Math.max(0.1, Math.min(Math.abs(this.scrollY - this.scrollTargetY) / this.speed, 0.8));
+    }
+  }, {
     key: 'getNodeTop',
     value: function getNodeTop(node) {
       return node.offsetTop;
-    }
-  }, {
-    key: 'getScollTop',
-    value: function getScollTop() {
-      return this.element === window ? this.element.scrollY : this.element.scrollTop;
     }
 
     /**
@@ -135,7 +194,8 @@ var Scroller = function () {
 
       var cb = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {};
 
-      this.scrollY = this.getScollTop();
+      this.scrollY = this.element === window ? this.element.scrollY : this.element.scrollTop;
+      this.calcTime();
       var currentTime = 0;
       var tick = function tick() {
         currentTime += 1 / 60;
