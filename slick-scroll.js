@@ -53,9 +53,9 @@ var createClass = function () {
 
 /**
  * @typedef Options
- * @type {bbject}
+ * @type {object}
  * @property {Element} element 
- * @property {number} [speed=500] 
+ * @property {number} [duration=500] 
  * @property {string} [easing='easeOutSine'] 
  */
 
@@ -73,37 +73,23 @@ var Scroller = function () {
     classCallCheck(this, Scroller);
 
     this.element = options.element || window;
-    this.speed = options.speed || 500;
+    this.duration = (Number.isInteger(options.duration) ? options.duration : 1) / 1000;
     this.easing = options.easing || 'easeOutSine';
 
     this.scrollTargetY = 0;
     this.scrollY = this.element.scrollY;
   }
+
   /**
-   * Sets the scroll speed
+   * Sets the scroll easing function
    * 
-   * @param {number} speed 
+   * @param {string} easing 
    * @returns 
    * @memberof Scroller
    */
 
 
   createClass(Scroller, [{
-    key: 'setSpeed',
-    value: function setSpeed(speed) {
-      this.speed = speed;
-      return this;
-    }
-
-    /**
-     * Sets the scroll easing function
-     * 
-     * @param {string} easing 
-     * @returns 
-     * @memberof Scroller
-     */
-
-  }, {
     key: 'setEasing',
     value: function setEasing(easing) {
       this.easing = easing;
@@ -125,14 +111,14 @@ var Scroller = function () {
       return this;
     }
   }, {
-    key: 'calcTime',
-    value: function calcTime() {
-      this.time = Math.max(0.1, Math.min(Math.abs(this.scrollY - this.scrollTargetY) / this.speed, 0.8));
-    }
-  }, {
     key: 'getNodeTop',
     value: function getNodeTop(node) {
       return node.offsetTop;
+    }
+  }, {
+    key: 'getScollTop',
+    value: function getScollTop() {
+      return this.element === window ? this.element.scrollY : this.element.scrollTop;
     }
 
     /**
@@ -149,8 +135,7 @@ var Scroller = function () {
 
       var cb = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {};
 
-      this.scrollY = this.element === window ? this.element.scrollY : this.element.scrollTop;
-      this.calcTime();
+      this.scrollY = this.getScollTop();
       var currentTime = 0;
       var tick = function tick() {
         currentTime += 1 / 60;

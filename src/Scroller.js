@@ -20,7 +20,7 @@ class Scroller {
   constructor (options) {
     this.element = options.element || window
     this.speed = options.speed || 500
-    this.easing = options.easing || 'easeOutSine'
+    this.easing = options.easing || 'easeOutQuint'
 
     this.scrollTargetY = 0
     this.scrollY = this.element.scrollY
