@@ -3,7 +3,7 @@
  * A slick scroller for HTML elements or window (Valina javascript)
  * @author Shy Alter
  * @license MIT
- * @version 0.0.3
+ * @version 0.0.4
  */
 
 (function (global, factory) {
