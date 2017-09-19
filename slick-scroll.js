@@ -1,6 +1,6 @@
 /*!
  * slick-scroll
- * undefined
+ * 
  * @author Shy Alter
  * @license MIT
  * @version 0.0.1

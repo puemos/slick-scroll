@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "main": "slick-scroll.js",
     "repository": "git@github.com:puemos/slick-scroll.git",
-    "description": "",
+    "description": "A slick scroller for HTML elements or window (Valina javascript)",
     "author": "Shy Alter",
     "license": "MIT",
     "files": ["slick-scroll.js", "slick-scroll..min.js"],
