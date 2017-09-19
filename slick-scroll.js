@@ -52,25 +52,29 @@ var createClass = function () {
 }();
 
 /**
+ * @typedef Options
+ * @type {bbject}
+ * @property {Element} element 
+ * @property {number} [speed=500] 
+ * @property {string} [easing='easeOutSine'] 
+ */
+
+/**
  * @class Scroller
  */
 
 var Scroller = function () {
   /**
    * Creates an instance of Scroller.
-   * @param {Element} element 
-   * @param {number} [speed=500] 
-   * @param {string} [easing='easeOutSine'] 
+   * @param {Options} options 
    * @memberof Scroller
    */
-  function Scroller(element) {
-    var speed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
-    var easing = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'easeOutSine';
+  function Scroller(options) {
     classCallCheck(this, Scroller);
 
-    this.element = element;
-    this.speed = speed;
-    this.easing = easing;
+    this.element = options.element || window;
+    this.speed = options.speed || 500;
+    this.easing = options.easing || 'easeOutSine';
 
     this.scrollTargetY = 0;
     this.scrollY = this.element.scrollY;
@@ -145,7 +149,7 @@ var Scroller = function () {
 
       var cb = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {};
 
-      this.scrollY = this.element.scrollTop;
+      this.scrollY = this.element === window ? this.element.scrollY : this.element.scrollTop;
       this.calcTime();
       var currentTime = 0;
       var tick = function tick() {

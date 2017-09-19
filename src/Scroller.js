@@ -1,20 +1,26 @@
 import easingEquations from './easingEquations'
 
 /**
+ * @typedef Options
+ * @type {bbject}
+ * @property {Element} element 
+ * @property {number} [speed=500] 
+ * @property {string} [easing='easeOutSine'] 
+ */
+
+/**
  * @class Scroller
  */
 class Scroller {
   /**
    * Creates an instance of Scroller.
-   * @param {Element} element 
-   * @param {number} [speed=500] 
-   * @param {string} [easing='easeOutSine'] 
+   * @param {Options} options 
    * @memberof Scroller
    */
-  constructor (element, speed = 500, easing = 'easeOutSine') {
-    this.element = element
-    this.speed = speed
-    this.easing = easing
+  constructor (options) {
+    this.element = options.element || window
+    this.speed = options.speed || 500
+    this.easing = options.easing || 'easeOutSine'
 
     this.scrollTargetY = 0
     this.scrollY = this.element.scrollY
@@ -69,7 +75,7 @@ class Scroller {
    * @memberof Scroller
    */
   scroll (cb = () => {}) {
-    this.scrollY = this.element.scrollTop
+    this.scrollY = this.element === window ? this.element.scrollY : this.element.scrollTop
     this.calcTime()
     let currentTime = 0
     const tick = () => {
