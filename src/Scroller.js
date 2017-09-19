@@ -1,18 +1,19 @@
 import easingEquations from './easingEquations'
 
 class Scroller {
-  constructor (element) {
+  constructor (element, speed = 500, easing = 'easeOutSine') {
     this.element = element
+    this.speed = speed
+    this.easing = easing
+
     this.scrollTargetY = 0
-    this.speed = 500
-    this.easing = 'easeOutSine'
     this.scrollY = this.element.scrollY
   }
-  speed (speed) {
+  setSpeed (speed) {
     this.speed = speed
     return this
   }
-  easing (easing) {
+  setEasing (easing) {
     this.easing = easing
     return this
   }
