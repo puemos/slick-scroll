@@ -1,5 +1,9 @@
 # slick-scroll
 
+## demo
+
+[window demo](http://slick-scroll.window.surge.sh/)
+
 ## Credit:
 
 @shunryu111 <http://stackoverflow.com/users/2630316/shunryu111>
