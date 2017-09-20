@@ -54,25 +54,18 @@ const scrollToMenu = myScroller.to(menu).speed(700).easing('easeOutSine');
 scrollToMenu.scroll()
 ```
 
-## Classes
+## Options : <code>object</code>
 
-<dl>
-<dt><a href="#Scroller">Scroller</a></dt>
-<dd></dd>
-</dl>
+**Kind**: global typedef
+**Properties**
 
-## Typedefs
-
-<dl>
-<dt><a href="#Options">Options</a> : <code>object</code></dt>
-<dd></dd>
-</dl>
-
-<a name="Scroller"></a>
+| Name    | Type                 | Default                      |
+| ------- | -------------------- | ---------------------------- |
+| element | <code>Element</code> | <code>window</code>          |
+| speed   | <code>number</code>  | <code>500</code>             |
+| easing  | <code>string</code>  | <code>"'easeOutSine'"</code> |
 
 ## Scroller
-
-**Kind**: global class
 
 -   [Scroller](#Scroller)
     -   _instance_
@@ -122,26 +115,6 @@ Sets the scroll to
 | ----- | ------------------------------------------- |
 | to    | <code>Element</code> \| <code>number</code> |
 
-<a name="Scroller+calcTime"></a>
-
-### scroller.calcTime()
-
-Calcs the remainnig time
-
-**Kind**: instance method of [<code>Scroller</code>](#Scroller)
-<a name="Scroller+getNodeTop"></a>
-
-### scroller.getNodeTop(node) ⇒ <code>number</code>
-
-Gets node offsetTop
-
-**Kind**: instance method of [<code>Scroller</code>](#Scroller)
-**Returns**: <code>number</code> - node's offsetTop
-
-| Param | Type                 |
-| ----- | -------------------- |
-| node  | <code>Element</code> |
-
 <a name="Scroller+scroll"></a>
 
 ### scroller.scroll([cb])
@@ -168,16 +141,3 @@ Creates an instance of Scroller.
 | Param   | Type                             |
 | ------- | -------------------------------- |
 | options | [<code>Options</code>](#Options) |
-
-<a name="Options"></a>
-
-## Options : <code>bbject</code>
-
-**Kind**: global typedef
-**Properties**
-
-| Name    | Type                 | Default                      |
-| ------- | -------------------- | ---------------------------- |
-| element | <code>Element</code> |                              |
-| speed   | <code>number</code>  | <code>500</code>             |
-| easing  | <code>string</code>  | <code>"'easeOutSine'"</code> |

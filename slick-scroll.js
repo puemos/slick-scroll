@@ -98,7 +98,6 @@ var createClass = function () {
 
 /**
  * @typedef Options
- * @type {bbject}
  * @property {Element} element 
  * @property {number} [speed=500] 
  * @property {string} [easing='easeOutSine'] 
@@ -128,7 +127,7 @@ var Scroller = function () {
    * Sets the scroll speed
    * 
    * @param {number} speed 
-   * @returns 
+   * @returns {this}
    * @memberof Scroller
    */
 
@@ -144,7 +143,7 @@ var Scroller = function () {
      * Sets the scroll easing function
      * 
      * @param {string} easing 
-     * @returns 
+     * @returns {this}
      * @memberof Scroller
      */
 
@@ -159,7 +158,7 @@ var Scroller = function () {
      * Sets the scroll to
      * 
      * @param {Element|number} to 
-     * @returns 
+     * @returns {this}
      * @memberof Scroller
      */
 
@@ -169,11 +168,27 @@ var Scroller = function () {
       this.scrollTargetY = _to instanceof Element ? this.getNodeTop(_to) : _to;
       return this;
     }
+
+    /**
+     * Calcs the remainnig time
+     * 
+     * @memberof Scroller
+     */
+
   }, {
     key: 'calcTime',
     value: function calcTime() {
       this.time = Math.max(0.1, Math.min(Math.abs(this.scrollY - this.scrollTargetY) / this.speed, 0.8));
     }
+
+    /**
+     * Gets node offsetTop
+     * 
+     * @param {Element} node 
+     * @returns {number} node's offsetTop
+     * @memberof Scroller
+     */
+
   }, {
     key: 'getNodeTop',
     value: function getNodeTop(node) {
