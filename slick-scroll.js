@@ -98,9 +98,9 @@ var createClass = function () {
 
 /**
  * @typedef Options
- * @property {Element} element 
+ * @property {Element} [element=window]
  * @property {number} [speed=500] 
- * @property {string} [easing='easeOutSine'] 
+ * @property {string} [easing=easeOutSine] 
  */
 
 /**
@@ -113,7 +113,8 @@ var Scroller = function () {
    * @param {Options} options 
    * @memberof Scroller
    */
-  function Scroller(options) {
+  function Scroller() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     classCallCheck(this, Scroller);
 
     this.element = options.element || window;
@@ -198,7 +199,8 @@ var Scroller = function () {
     /**
      * Scroll
      * 
-     * @param {Function} [cb=() => {}] callback function when finished the scroll
+     * @param {function} [onSuccess=() => {}] callback function when finish to scroll
+     * @param {function} [onFailure=() => {}] callback function when failed to scroll
      * @memberof Scroller
      */
 
@@ -207,8 +209,12 @@ var Scroller = function () {
     value: function scroll() {
       var _this = this;
 
-      var cb = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {};
+      var onSuccess = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {};
+      var onFailure = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
 
+      if (!this.element.scrollTo) {
+        setTimeout(this.scroll(onSuccess, onFailure), 1);
+      }
       this.scrollY = this.element === window ? this.element.scrollY : this.element.scrollTop;
       this.calcTime();
       var currentTime = 0;
@@ -223,7 +229,7 @@ var Scroller = function () {
           _this.element.scrollTo(0, _this.scrollY + (_this.scrollTargetY - _this.scrollY) * t);
         } else {
           _this.element.scrollTo(0, _this.scrollTargetY);
-          cb();
+          onSuccess();
         }
       };
       tick();

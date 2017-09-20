@@ -117,15 +117,15 @@ Sets the scroll to
 
 <a name="Scroller+scroll"></a>
 
-### scroller.scroll([cb])
-
+### scroller.scroll([onSuccess], [onFailure])
 Scroll
 
 **Kind**: instance method of [<code>Scroller</code>](#Scroller)
 
-| Param | Type                  | Default               | Description                                |
-| ----- | --------------------- | --------------------- | ------------------------------------------ |
-| [cb]  | <code>function</code> | <code>() => {}</code> | callback function when finished the scroll |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [onSuccess] | <code>function</code> | <code>() =&gt; {}</code> | callback function when finish to scroll |
+| [onFailure] | <code>function</code> | <code>() =&gt; {}</code> | callback function when failed to scroll |
 
 <a name="Scroller.Scroller"></a>
 

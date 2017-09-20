@@ -2,9 +2,9 @@ import easingEquations from './easingEquations'
 
 /**
  * @typedef Options
- * @property {Element} element 
+ * @property {Element} [element=window]
  * @property {number} [speed=500] 
- * @property {string} [easing='easeOutSine'] 
+ * @property {string} [easing=easeOutSine] 
  */
 
 /**
@@ -16,7 +16,7 @@ class Scroller {
    * @param {Options} options 
    * @memberof Scroller
    */
-  constructor (options) {
+  constructor (options = {}) {
     this.element = options.element || window
     this.speed = options.speed || 500
     this.easing = options.easing || 'easeOutQuint'
@@ -83,10 +83,14 @@ class Scroller {
   /**
    * Scroll
    * 
-   * @param {Function} [cb=() => {}] callback function when finished the scroll
+   * @param {function} [onSuccess=() => {}] callback function when finish to scroll
+   * @param {function} [onFailure=() => {}] callback function when failed to scroll
    * @memberof Scroller
    */
-  scroll (cb = () => {}) {
+  scroll (onSuccess = () => {}, onFailure = () => {}) {
+    if (!this.element.scrollTo) {
+      setTimeout(this.scroll(onSuccess, onFailure), 1)
+    }
     this.scrollY = this.element === window ? this.element.scrollY : this.element.scrollTop
     this.calcTime()
     let currentTime = 0
@@ -101,7 +105,7 @@ class Scroller {
         this.element.scrollTo(0, this.scrollY + (this.scrollTargetY - this.scrollY) * t)
       } else {
         this.element.scrollTo(0, this.scrollTargetY)
-        cb()
+        onSuccess()
       }
     }
     tick()

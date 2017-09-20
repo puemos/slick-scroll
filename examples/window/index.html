@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>slick-scroll.js</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+    <header class="header" -header>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="section__container">
+                <div class="section__header">
+                    <h2 class="section__title">Easings</h2>
+                    <p class="section__lead">You can use various types of easing.</p>
+                </div>
+                <div class="section__body">
+                    <span class="list--inline">
+                        <button onclick="scrollerQuery('#first');">1. First</button>
+                        <button onclick="scrollerQuery('#second');">2. Second</button>
+                        <button onclick="scrollerQuery('#third');">3. Third</button>
+                        <button onclick="scrollerQuery('#fourth');">4. Fourth</button>
+                        <button onclick="scrollerQuery('#fifth');">5. Fifth</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section demo-content" id="first">
+        <div class="container">
+            <div class="section__header">
+                <div class="section__title">1. First</div>
+                <div class="section__lead">
+                    <button onclick="scrollerTop()">Page top</button>
+                    <button onclick="scrollerQuery('#second');">Next content</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section demo-content" id="second">
+        <div class="container">
+            <div class="section__header">
+                <div class="section__title">2. Second</div>
+                <div class="section__lead">
+                    <button onclick="scrollerTop()">Page top</button>
+                    <button onclick="scrollerQuery('#third');">Next content</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section demo-content" id="third">
+        <div class="container">
+            <div class="section__header">
+                <div class="section__title">3. Third</div>
+                <div class="section__lead">
+                    <button onclick="scrollerTop()">Page top</button>
+                    <button onclick="scrollerQuery('#fourth');">Next content</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section demo-content" id="fourth">
+        <div class="container">
+            <div class="section__header">
+                <div class="section__title">4. Fourth</div>
+                <div class="section__lead">
+                    <button onclick="scrollerTop()">Page top</button>
+                    <button onclick="scrollerQuery('#fifth');">Next content</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section demo-content" id="fifth">
+        <div class="container">
+            <div class="section__header">
+                <div class="section__title">5. Fifth</div>
+                <div class="section__lead">
+                    <button onclick="scrollerTop()">Page top</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../../slick-scroll.js"></script>
+    <script>
+        var Scroller = window["slick-scroll"];
+        var testScroller = new Scroller();
+        function scrollerQuery(query) {
+            var el = document.querySelector(query)
+            testScroller.to(el).scroll()
+        }
+        function scrollerTop(query) {
+            testScroller.to(0).scroll()
+        }
+    </script>
+</body>
+
+</html>
