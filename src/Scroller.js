@@ -2,7 +2,6 @@ import easingEquations from './easingEquations'
 
 /**
  * @typedef Options
- * @type {bbject}
  * @property {Element} element 
  * @property {number} [speed=500] 
  * @property {string} [easing='easeOutSine'] 
@@ -29,7 +28,7 @@ class Scroller {
    * Sets the scroll speed
    * 
    * @param {number} speed 
-   * @returns 
+   * @returns {this}
    * @memberof Scroller
    */
   setSpeed (speed) {
@@ -41,7 +40,7 @@ class Scroller {
    * Sets the scroll easing function
    * 
    * @param {string} easing 
-   * @returns 
+   * @returns {this}
    * @memberof Scroller
    */
   setEasing (easing) {
@@ -53,7 +52,7 @@ class Scroller {
    * Sets the scroll to
    * 
    * @param {Element|number} to 
-   * @returns 
+   * @returns {this}
    * @memberof Scroller
    */
   to (to) {
@@ -61,9 +60,22 @@ class Scroller {
     return this
   }
 
+  /**
+   * Calcs the remainnig time
+   * 
+   * @memberof Scroller
+   */
   calcTime () {
     this.time = Math.max(0.1, Math.min(Math.abs(this.scrollY - this.scrollTargetY) / this.speed, 0.8))
   }
+
+  /**
+   * Gets node offsetTop
+   * 
+   * @param {Element} node 
+   * @returns {number} node's offsetTop
+   * @memberof Scroller
+   */
   getNodeTop (node) {
     return node.offsetTop
   }
