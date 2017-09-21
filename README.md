@@ -1,8 +1,8 @@
 # slick-scroll
 
-## demo
+## Demos
 
-[window demo](http://slick-scroll.window.surge.sh/)
+[Demos](http://slick-scroll.surge.sh/)
 
 ## Credit:
 
