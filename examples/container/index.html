@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>slick-scroll.js</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <a class="navbar-brand" href="../../index.html">slick-scroll</a>
+
+        <div class="navbar-left">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link" href="../window/index.html">window</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../container/index.html">container</a>
+                </li>
+
+            </ul>
+
+        </div>
+        <div class="navbar-right">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/puemos/slick-scroll">Source</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <section class="section">
+        <div class="container">
+            <div class="section__container">
+                <div class="section__body">
+                    <span class="list--inline">
+                        <button onclick="scrollerQuery('#box-1');">1.</button>
+                        <button onclick="scrollerQuery('#box-2');">2.</button>
+                        <button onclick="scrollerQuery('#box-3');">3.</button>
+                        <button onclick="scrollerQuery('#box-4');">4.</button>
+                        <button onclick="scrollerQuery('#box-5');">5.</button>
+                    </span>
+                </div>
+            </div>
+            <div class="demo__container" id="container">
+                <div class="demo__box" id="box-1">1.</div>
+                <div class="demo__box" id="box-2">2.</div>
+                <div class="demo__box" id="box-3">3.</div>
+                <div class="demo__box" id="box-4">4.</div>
+                <div class="demo__box" id="box-5">5.</div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="../../slick-scroll.js"></script>
+    <script>
+        var Scroller = window["slick-scroll"];
+        var container = document.getElementById('container')
+        var testScroller = new Scroller({ element: container });
+        function scrollerQuery(query) {
+            var el = document.querySelector(query)
+            testScroller.to(el).scroll()
+        }
+        function scrollerTop(query) {
+            testScroller.to(0).scroll()
+        }
+    </script>
+</body>
+
+</html>

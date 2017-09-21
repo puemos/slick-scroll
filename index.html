@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>slick-scroll.js</title>
+    <link rel="stylesheet" href="./md.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <a class="navbar-brand" href="#">slick-scroll</a>
+
+        <div class="navbar-left">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link" href="examples/window/index.html">window</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="examples/container/index.html">container</a>
+                </li>
+
+            </ul>
+
+        </div>
+        <div class="navbar-right">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/puemos/slick-scroll">Source</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <div class="container">
+        <h1>
+            <a id="slickscroll_0"></a>slick-scroll</h1>
+
+        <h2>
+            <a id="Credit_6"></a>Credit:</h2>
+        <p>@shunryu111
+            <a href="https://stackoverflow.com/users/2630316/shunryu111">http://stackoverflow.com/users/2630316/shunryu111</a>
+        </p>
+        <h2>
+            <a id="Based_on_10"></a>Based on:</h2>
+        <p>
+            <a href="https://stackoverflow.com/a/26798337/5068410">http://stackoverflow.com/a/26798337/5068410</a>
+        </p>
+        <h2>
+            <a id="install_14"></a>install</h2>
+        <code class="language-bash">npm install slick-scroll --save
+        </code>
+        <h2>
+            <a id="usage_20"></a>usage</h2>
+
+        <pre>   
+            <code class="language-javascript">
+import Scroller from 'slick-scroll';
+// OR
+const Scroller = require('slick-scroll');
+
+// window
+const windowScroller = new Scroller({
+    speed: 1000
+})
+
+// Container
+const container = document.getElementById('rolling');
+
+const containerScroller = new Scroller({
+    element: container,
+    speed: 1000
+})
+
+myScroller.to(500).scroll()
+myScroller.to(500).setSpeed(700).scroll()
+myScroller.to(500).setEasing('easeOutSine').scroll();
+myScroller.to(500).setSpeed(700).setEasing('easeInOutSine').scroll();
+
+// Element in the DOM
+myScroller.to(element).scroll()
+myScroller.to(element).speed(700).scroll()
+myScroller.to(element).easing('easeInOutQuint').scroll();
+myScroller.to(element).speed(700).easing('easeInOutQuint').scroll();
+
+// Save the scroller and use whenever you need
+const scrollToTop = myScroller.to(0).speed(700).easing('easeInOutQuint');
+scrollToTop.scroll()
+
+const menu = document.getElementById('menu');
+const scrollToMenu = myScroller.to(menu).speed(700).easing('easeOutSine');
+scrollToMenu.scroll()
+</code>
+</pre>
+        <h2>
+            <a id="Options__codeobjectcode_60"></a>Options :
+            <code>object</code>
+        </h2>
+        <p>
+            <strong>Kind</strong>: global typedef
+            <br>
+            <strong>Properties</strong>
+        </p>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>element</td>
+                    <td>
+                        <code>Element</code>
+                    </td>
+                    <td>
+                        <code>window</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>speed</td>
+                    <td>
+                        <code>number</code>
+                    </td>
+                    <td>
+                        <code>500</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>easing</td>
+                    <td>
+                        <code>string</code>
+                    </td>
+                    <td>
+                        <code>&quot;‘easeOutSine’&quot;</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>
+            <a id="Scroller_71"></a>Scroller</h2>
+        <ul>
+            <li>
+                <a href="#Scroller">Scroller</a>
+                <ul>
+                    <li>
+                        <em>instance</em>
+                        <ul>
+                            <li>
+                                <a href="#Scroller+setSpeed">.setSpeed(speed)</a> ⇒
+                                <code>this</code>
+                            </li>
+                            <li>
+                                <a href="#Scroller+setEasing">.setEasing(easing)</a> ⇒
+                                <code>this</code>
+                            </li>
+                            <li>
+                                <a href="#Scroller+to">.to(to)</a> ⇒
+                                <code>this</code>
+                            </li>
+                            <li>
+                                <a href="#Scroller+calcTime">.calcTime()</a>
+                            </li>
+                            <li>
+                                <a href="#Scroller+getNodeTop">.getNodeTop(node)</a> ⇒
+                                <code>number</code>
+                            </li>
+                            <li>
+                                <a href="#Scroller+scroll">.scroll([cb])</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <em>static</em>
+                        <ul>
+                            <li>
+                                <a href="#Scroller.Scroller">.Scroller</a>
+                                <ul>
+                                    <li>
+                                        <a href="#new_Scroller.Scroller_new">new Scroller(options)</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p>
+            <a name=“Scroller+setSpeed”></a>
+        </p>
+        <h3>
+            <a id="scrollersetSpeedspeed__codethiscode_87"></a>scroller.setSpeed(speed) ⇒
+            <code>this</code>
+        </h3>
+        <p>Sets the scroll speed</p>
+        <p>
+            <strong>Kind</strong>: instance method of
+            <a href="#Scroller">
+                <code>Scroller</code>
+            </a>
+        </p>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Param</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>speed</td>
+                    <td>
+                        <code>number</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <a name=“Scroller+setEasing”></a>
+        </p>
+        <h3>
+            <a id="scrollersetEasingeasing__codethiscode_99"></a>scroller.setEasing(easing) ⇒
+            <code>this</code>
+        </h3>
+        <p>Sets the scroll easing function</p>
+        <p>
+            <strong>Kind</strong>: instance method of
+            <a href="#Scroller">
+                <code>Scroller</code>
+            </a>
+        </p>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Param</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>easing</td>
+                    <td>
+                        <code>string</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <a name=“Scroller+to”></a>
+        </p>
+        <h3>
+            <a id="scrollertoto__codethiscode_111"></a>
+            <a href="http://scroller.to">scroller.to</a>(to) ⇒
+            <code>this</code>
+        </h3>
+        <p>Sets the scroll to</p>
+        <p>
+            <strong>Kind</strong>: instance method of
+            <a href="#Scroller">
+                <code>Scroller</code>
+            </a>
+        </p>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Param</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>to</td>
+                    <td>
+                        <code>Element</code> |
+                        <code>number</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <a name=“Scroller+scroll”></a>
+        </p>
+        <h3>
+            <a id="scrollerscrollonSuccess_onFailure_123"></a>scroller.scroll([onSuccess], [onFailure])</h3>
+        <p>Scroll</p>
+        <p>
+            <strong>Kind</strong>: instance method of
+            <a href="#Scroller">
+                <code>Scroller</code>
+            </a>
+        </p>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Param</th>
+                    <th>Type</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>[onSuccess]</td>
+                    <td>
+                        <code>function</code>
+                    </td>
+                    <td>
+                        <code>() => {}</code>
+                    </td>
+                    <td>callback function when finish to scroll</td>
+                </tr>
+                <tr>
+                    <td>[onFailure]</td>
+                    <td>
+                        <code>function</code>
+                    </td>
+                    <td>
+                        <code>() => {}</code>
+                    </td>
+                    <td>callback function when failed to scroll</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <a name=“Scroller.Scroller”></a>
+        </p>
+        <h3>
+            <a id="ScrollerScroller_135"></a>Scroller.Scroller</h3>
+        <p>
+            <strong>Kind</strong>: static class of
+            <a href="#Scroller">
+                <code>Scroller</code>
+            </a>
+            <br>
+            <a name=“new_Scroller.Scroller_new”></a>
+        </p>
+        <h4>
+            <a id="new_Scrolleroptions_140"></a>new Scroller(options)</h4>
+        <p>Creates an instance of Scroller.</p>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Param</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>options</td>
+                    <td>
+                        <a href="#Options">
+                            <code>Options</code>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

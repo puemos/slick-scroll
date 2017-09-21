@@ -6,6 +6,19 @@
     padding-right: 40px;
     padding-left: 40px;
 }
+
+.demo__container{
+    width: 600px;
+    height: 300px;
+    overflow-y: scroll;
+}
+.demo__box{
+    width: 100%;
+    height: 70%;
+    margin-bottom: 10px;
+    background-color: #FDFF9D;
+}
+
 .demo-content {
     border-top: 1px solid #ccc;
 }

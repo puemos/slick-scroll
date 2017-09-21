@@ -24,7 +24,7 @@
         * [.to(to)](#Scroller+to) ⇒ <code>this</code>
         * [.calcTime()](#Scroller+calcTime)
         * [.getNodeTop(node)](#Scroller+getNodeTop) ⇒ <code>number</code>
-        * [.scroll([()], [()])](#Scroller+scroll)
+        * [.scroll([onSuccess], [onFailure])](#Scroller+scroll)
     * _static_
         * [.Scroller](#Scroller.Scroller)
             * [new Scroller(options)](#new_Scroller.Scroller_new)
@@ -82,15 +82,15 @@ Gets node offsetTop
 
 <a name="Scroller+scroll"></a>
 
-### scroller.scroll([()], [()])
+### scroller.scroll([onSuccess], [onFailure])
 Scroll
 
 **Kind**: instance method of [<code>Scroller</code>](#Scroller)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [()] | <code>function</code> | <code>&gt; {}</code> | callback function when finish to scroll |
-| [()] | <code>function</code> | <code>&gt; {}</code> | callback function when failed to scroll |
+| [onSuccess] | <code>function</code> | <code>() =&gt; {}</code> | callback function when finish to scroll |
+| [onFailure] | <code>function</code> | <code>() =&gt; {}</code> | callback function when failed to scroll |
 
 <a name="Scroller.Scroller"></a>
 
@@ -112,9 +112,9 @@ Creates an instance of Scroller.
 **Kind**: global typedef  
 **Properties**
 
-| Name | Type | Description |
+| Name | Type | Default |
 | --- | --- | --- |
-| element | <code>Element</code> | [window] |
-| speed | <code>number</code> | [500] |
-| easing | <code>string</code> | [easeOutSine] |
+| element | <code>Element</code> | <code>window</code> | 
+| speed | <code>number</code> | <code>500</code> | 
+| easing | <code>string</code> | <code>&quot;easeOutSine&quot;</code> | 
 

@@ -7,12 +7,35 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>slick-scroll.js</title>
     <link rel="stylesheet" href="./style.css">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+    crossorigin="anonymous">
 </head>
 
 <body>
-    <header class="header" -header>
-    </header>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <a class="navbar-brand" href="../../index.html">slick-scroll</a>
+
+        <div class="navbar-left">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link" href="../window/index.html">window</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../container/index.html">container</a>
+                </li>
+
+            </ul>
+
+        </div>
+        <div class="navbar-right">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/puemos/slick-scroll">Source</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
 
     <section class="section">
         <div class="container">
@@ -89,7 +112,7 @@
         </div>
     </section>
 
-    <script src="https://cdn.rawgit.com/puemos/slick-scroll/e17b4d60/slick-scroll.js"></script>
+    <script src="../../slick-scroll.js"></script>
     <script>
         var Scroller = window["slick-scroll"];
         var testScroller = new Scroller();
