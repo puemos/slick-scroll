@@ -1,6 +1,6 @@
 {
     "name": "slick-scroll",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "main": "slick-scroll.js",
     "repository": "git@github.com:puemos/slick-scroll.git",
     "description": "A slick scroller for HTML elements or window (Valina javascript)",
