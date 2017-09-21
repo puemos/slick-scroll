@@ -121,7 +121,7 @@ var Scroller = function () {
     this.speed = options.speed || 500;
     this.easing = options.easing || 'easeOutQuint';
 
-    this.attepmts = 0;
+    this.attempts = 0;
     this.scrollTargetY = 0;
     this.scrollY = this.element.scrollY;
   }
@@ -213,15 +213,15 @@ var Scroller = function () {
       var onSuccess = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {};
       var onFailure = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
 
-      if (this.attepmts > 5) {
+      if (this.attempts > 5) {
         return;
       }
       if (!this.element.scrollTo) {
-        this.attepmts = this.attepmts + 1;
+        this.attempts = this.attempts + 1;
         setTimeout(this.scroll(onSuccess, onFailure), 1);
         return;
       }
-      this.attepmts = 0;
+      this.attempts = 0;
       this.scrollY = this.element === window ? this.element.scrollY : this.element.scrollTop;
       this.calcTime();
       var currentTime = 0;
