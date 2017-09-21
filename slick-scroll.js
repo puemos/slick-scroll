@@ -121,6 +121,7 @@ var Scroller = function () {
     this.speed = options.speed || 500;
     this.easing = options.easing || 'easeOutQuint';
 
+    this.attepmts = 0;
     this.scrollTargetY = 0;
     this.scrollY = this.element.scrollY;
   }
