@@ -63,7 +63,7 @@ class Scroller {
 
   /**
    * Calcs the remainnig time
-   * 
+   * @private
    * @memberof Scroller
    */
   calcTime () {
@@ -72,13 +72,44 @@ class Scroller {
 
   /**
    * Gets node offsetTop
-   * 
+   * @private
    * @param {Element} node 
    * @returns {number} node's offsetTop
    * @memberof Scroller
    */
   getNodeTop (node) {
     return node.offsetTop
+  }
+
+  /**
+   * 
+   * @private
+   * @param {any} distance 
+   * @memberof Scroller
+   */
+  move (distance) {
+    if (this.element === window) {
+      this.element.scrollTo(0, distance)
+    } else {
+      this.element.scrollTop = distance
+    }
+  }
+
+  /**
+   * 
+   * @private
+   * @memberof Scroller
+   */
+  calcScrollY () {
+    this.scrollY = this.element === window ? this.element.scrollY : this.element.scrollTop
+  }
+
+  checkReady () {
+    if (this.element === window) {
+      return 'scrollTo' in this.element
+    } else {
+      return 'scrollTop' in this.element
+    }
   }
 
   /**
@@ -92,14 +123,14 @@ class Scroller {
     if (this.attempts > 5) {
       return
     }
-    if (!this.element.scrollTo) {
+    if (!this.checkReady()) {
+      setTimeout(this.scroll(onSuccess, onFailure), 1 + this.attempts * 50)
       this.attempts = this.attempts + 1
-      setTimeout(this.scroll(onSuccess, onFailure), 1)
       return
     }
     this.attempts = 0
-    this.scrollY = this.element === window ? this.element.scrollY : this.element.scrollTop
     this.calcTime()
+    this.calcScrollY()
     let currentTime = 0
     const tick = () => {
       currentTime += 1 / 60
@@ -109,9 +140,9 @@ class Scroller {
 
       if (p < 1) {
         requestAnimationFrame(tick)
-        this.element.scrollTo(0, this.scrollY + (this.scrollTargetY - this.scrollY) * t)
+        this.move(this.scrollY + (this.scrollTargetY - this.scrollY) * t)
       } else {
-        this.element.scrollTo(0, this.scrollTargetY)
+        this.move(this.scrollTargetY)
         onSuccess()
       }
     }

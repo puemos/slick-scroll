@@ -173,7 +173,7 @@ var Scroller = function () {
 
     /**
      * Calcs the remainnig time
-     * 
+     * @private
      * @memberof Scroller
      */
 
@@ -185,7 +185,7 @@ var Scroller = function () {
 
     /**
      * Gets node offsetTop
-     * 
+     * @private
      * @param {Element} node 
      * @returns {number} node's offsetTop
      * @memberof Scroller
@@ -195,6 +195,44 @@ var Scroller = function () {
     key: 'getNodeTop',
     value: function getNodeTop(node) {
       return node.offsetTop;
+    }
+
+    /**
+     * 
+     * @private
+     * @param {any} distance 
+     * @memberof Scroller
+     */
+
+  }, {
+    key: 'move',
+    value: function move(distance) {
+      if (this.element === window) {
+        this.element.scrollTo(0, distance);
+      } else {
+        this.element.scrollTop = distance;
+      }
+    }
+
+    /**
+     * 
+     * @private
+     * @memberof Scroller
+     */
+
+  }, {
+    key: 'calcScrollY',
+    value: function calcScrollY() {
+      this.scrollY = this.element === window ? this.element.scrollY : this.element.scrollTop;
+    }
+  }, {
+    key: 'checkReady',
+    value: function checkReady() {
+      if (this.element === window) {
+        return 'scrollTo' in this.element;
+      } else {
+        return 'scrollTop' in this.element;
+      }
     }
 
     /**
@@ -216,14 +254,14 @@ var Scroller = function () {
       if (this.attempts > 5) {
         return;
       }
-      if (!this.element.scrollTo) {
+      if (!this.checkReady()) {
+        setTimeout(this.scroll(onSuccess, onFailure), 1 + this.attempts * 50);
         this.attempts = this.attempts + 1;
-        setTimeout(this.scroll(onSuccess, onFailure), 1);
         return;
       }
       this.attempts = 0;
-      this.scrollY = this.element === window ? this.element.scrollY : this.element.scrollTop;
       this.calcTime();
+      this.calcScrollY();
       var currentTime = 0;
       var tick = function tick() {
         currentTime += 1 / 60;
@@ -233,9 +271,9 @@ var Scroller = function () {
 
         if (p < 1) {
           requestAnimationFrame(tick);
-          _this.element.scrollTo(0, _this.scrollY + (_this.scrollTargetY - _this.scrollY) * t);
+          _this.move(_this.scrollY + (_this.scrollTargetY - _this.scrollY) * t);
         } else {
-          _this.element.scrollTo(0, _this.scrollTargetY);
+          _this.move(_this.scrollTargetY);
           onSuccess();
         }
       };
